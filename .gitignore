@@ -1,30 +1,25 @@
-logs
-nbproject
-output
-# Next line commented out, because test/webapp-virtual-library and
-# test/webapp-virtual-webapp use it:
-target
-work
-build.properties
-mvn.properties
-.ant-targets-build.xml
-.checkstyle
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
 .classpath
-.fbprefs
+.factorypath
 .project
 .settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
 .idea
+*.iws
 *.iml
 *.ipr
-*.iws
-*.asc
-*.jj
-*.tmp
-maven-resolver-ant-tasks-*.jar
-thumbs.db
-Thumbs.db
-bin/setenv.*
-java/org/apache/catalina/startup/catalina.properties
-modules/jdbc-pool/bin
-modules/jdbc-pool/includes
-webapps/docs/jdbc-pool.xml
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/

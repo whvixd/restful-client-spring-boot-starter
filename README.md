@@ -10,6 +10,7 @@ restful-client-spring-boot-starter 是一个基于springboot的快速集成http�
 <artifactId>restful-client-spring-boot-starter</artifactId>
 <version>1.0.0</version>
 ```
+
 ## 2. 添加客户端代码
 
 ```java
