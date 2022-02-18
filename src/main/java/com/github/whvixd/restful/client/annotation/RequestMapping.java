@@ -1,0 +1,24 @@
+package com.github.whvixd.restful.client.annotation;
+
+import com.github.restful.client.core.handler.CoderHandler;
+import com.github.restful.client.core.handler.DefaultCoderHandler;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * 用于接口请求的ip地址
+ * <p>
+ * Created by whvixd on 2022/2/18.
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE})
+public @interface RequestMapping {
+    String path() default "127.0.0.1:8080";
+
+    String message() default "";
+
+    Class<? extends CoderHandler> coder() default DefaultCoderHandler.class;
+}
