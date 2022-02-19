@@ -16,8 +16,8 @@ public class RestfulClientFactoryBean<T> implements FactoryBean<T> {
 
     @Override
     public T getObject() throws Exception {
-        // 添加RestfulClientScan
-        return null;
+        // 添加RestfulClientScan，todo 动态代理接口
+        return (T) new Object();
     }
 
     @Override

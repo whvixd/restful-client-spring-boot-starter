@@ -1,9 +1,7 @@
 package com.github.whvixd.restful.client.spring.boot.autoconfigure;
 
-import com.github.whvixd.restful.client.RestfulClientFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -19,8 +17,4 @@ public class RestfulClientAutoConfiguration {
         this.restfulClientProperties = restfulClientProperties;
     }
 
-    @Bean
-    public RestfulClientFactoryBean restfulClientStarter(){
-        return new RestfulClientFactoryBean();
-    }
 }

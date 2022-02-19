@@ -1,8 +1,5 @@
 package com.github.whvixd.restful.client.annotation;
 
-import com.github.restful.client.core.handler.CoderHandler;
-import com.github.restful.client.core.handler.DefaultCoderHandler;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -20,5 +17,5 @@ public @interface RequestMapping {
 
     String message() default "";
 
-    Class<? extends CoderHandler> coder() default DefaultCoderHandler.class;
+//    Class<? extends CoderHandler> coder() default DefaultCoderHandler.class;
 }

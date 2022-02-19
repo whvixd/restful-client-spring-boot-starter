@@ -19,4 +19,6 @@ public @interface RestfulClientScan {
     String[] value() default {};
 
     String[] basePackages() default {};
+
+    Class<?>[] basePackageClasses() default {};
 }
