@@ -20,8 +20,6 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class RestfulClientActuator {
 
-
-    // todo 配置化
     private OkHttpClient okHttpClient;
 
     @Autowired

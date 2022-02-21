@@ -1,14 +1,18 @@
 package com.github.whvixd.restful.client;
 
+import com.github.whvixd.restful.client.proxy.RestfulClientProxy;
 import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by wangzhx on 2018/12/1.
  */
-// TODO: 2022/2/18 使用手动注册
 public class RestfulClientFactoryBean<T> implements FactoryBean<T> {
 
-    private Class<T> clientType;
+    private final Class<T> clientType;
+
+    @Autowired
+    private RestfulClientProxy proxy;
 
     public RestfulClientFactoryBean(Class<T> clientType) {
         this.clientType = clientType;
@@ -16,8 +20,7 @@ public class RestfulClientFactoryBean<T> implements FactoryBean<T> {
 
     @Override
     public T getObject() throws Exception {
-        // 添加RestfulClientScan，todo 动态代理接口
-        return (T) new Object();
+        return proxy.invoke(clientType);
     }
 
     @Override
