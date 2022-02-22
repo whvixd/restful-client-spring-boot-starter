@@ -1,4 +1,4 @@
-package com.github.whvixd.restful.client.proxy;
+package com.github.whvixd.restful.client.core;
 
 import com.github.whvixd.restful.client.support.RestfulClientModelTransformer;
 import org.springframework.beans.factory.annotation.Autowired;

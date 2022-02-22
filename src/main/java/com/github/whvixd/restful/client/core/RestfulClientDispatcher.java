@@ -1,4 +1,4 @@
-package com.github.whvixd.restful.client.proxy;
+package com.github.whvixd.restful.client.core;
 
 import com.github.whvixd.restful.client.exception.RestfulClientException;
 import com.github.whvixd.restful.client.support.CodeResolver;

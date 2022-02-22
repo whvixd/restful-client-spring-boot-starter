@@ -1,8 +1,8 @@
 package com.github.whvixd.restful.client.spring.boot.autoconfigure;
 
-import com.github.whvixd.restful.client.proxy.RestfulClientActuator;
-import com.github.whvixd.restful.client.proxy.RestfulClientDispatcher;
-import com.github.whvixd.restful.client.proxy.RestfulClientProxy;
+import com.github.whvixd.restful.client.core.RestfulClientActuator;
+import com.github.whvixd.restful.client.core.RestfulClientDispatcher;
+import com.github.whvixd.restful.client.core.RestfulClientProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
 package com.github.whvixd.restful.client;
 
-import com.github.whvixd.restful.client.proxy.RestfulClientProxy;
+import com.github.whvixd.restful.client.core.RestfulClientProxy;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
