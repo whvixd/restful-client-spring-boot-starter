@@ -50,14 +50,10 @@ public class FastJsonUtil {
      * 支持范型json转成bean
      *
      * @param json json字符串
-     * @param <T>  类型
      * @return 类
      */
-    @Deprecated
-    public <T> T fromJson(String json) {
-        return JSONObject.parseObject(json, new TypeReference<T>() {
-                }.getType(),
-                Feature.SupportNonPublicField, Feature.AllowComment, Feature.InitStringFieldAsEmpty, Feature.DisableFieldSmartMatch);
+    public JSONObject fromJson(String json) {
+        return JSONObject.parseObject(json);
     }
 
     public <T> T fromJson(byte[] bytes, Type type) {

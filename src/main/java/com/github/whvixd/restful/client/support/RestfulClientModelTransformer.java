@@ -25,15 +25,15 @@ public class RestfulClientModelTransformer {
         Class<?> declaringClass = method.getDeclaringClass();
         RequestMapping requestMapping = declaringClass.getAnnotation(RequestMapping.class);
         if (Objects.isNull(requestMapping)) {
-            log.error("未添加@RequestMapping");
-            throw new RestfulClientException("接口未添加@RequestMapping");
+            log.error("{} interface does not decorate @RequestMapping",declaringClass.getName());
+            throw new RestfulClientException("interface does not decorate @RequestMapping");
         }
 
         String ipAndPort = requestMapping.path();
         ipAndPort = ipAndPort.startsWith(RestfulClientConstants.HTTP) ? ipAndPort : RestfulClientConstants.HTTP.concat(ipAndPort);
         if (!RestfulClientStringUtils.checkUrl(ipAndPort)) {
-            log.error("ip:{} 格式不对", ipAndPort);
-            throw new RestfulClientException("ip格式错误");
+            log.error("url format is illegal,ip:{} ", ipAndPort);
+            throw new RestfulClientException("url format is illegal");
         }
 
         return doTransfer(method, args, ipAndPort, requestMapping.coder());

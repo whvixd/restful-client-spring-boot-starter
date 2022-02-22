@@ -90,7 +90,7 @@ public class RestfulClientStringUtils {
             }
         }
 
-        if (CollectionUtils.isEmpty(pathParam)) {
+        if (!CollectionUtils.isEmpty(pathParam)) {
             urlWithPathParam = analysisParam(urlWithPathParam, pathParam);
         }
 
@@ -107,7 +107,7 @@ public class RestfulClientStringUtils {
      * @return tom/123456
      */
     public String analysisParam(String path, Map<String, String> param) {
-        if (!StringUtils.isEmpty(path) || CollectionUtils.isEmpty(param)) {
+        if (!StringUtils.isEmpty(path) && CollectionUtils.isEmpty(param)) {
             return path;
         }
         for (String pathParamKey : param.keySet()) {
