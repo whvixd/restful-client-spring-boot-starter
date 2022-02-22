@@ -20,7 +20,7 @@ public class RestfulClientFactoryBean<T> implements FactoryBean<T> {
 
     @Override
     public T getObject() throws Exception {
-        return proxy.invoke(clientType);
+        return proxy.wrapDynamicProxy(clientType);
     }
 
     @Override

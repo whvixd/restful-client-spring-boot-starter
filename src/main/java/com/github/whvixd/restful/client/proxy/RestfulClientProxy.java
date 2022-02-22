@@ -12,13 +12,13 @@ public class RestfulClientProxy {
     @Autowired
     private RestfulClientDispatcher dispatcher;
 
-    public <T> T invoke(Class<T> clientType) {
-        return getJdkClientProxy(clientType);
+    public <T> T wrapDynamicProxy(Class<T> clientType) {
+        return doWrapDynamicProxy(clientType);
     }
 
 
     @SuppressWarnings("all")
-    private <T> T getJdkClientProxy(Class<T> clientType) {
+    private <T> T doWrapDynamicProxy(Class<T> clientType) {
         return (T) Proxy.newProxyInstance(clientType.getClassLoader(), new Class[]{clientType},
                 (proxy, method, args) -> dispatcher.doInvoke(RestfulClientModelTransformer.transfer(method, args)));
     }
