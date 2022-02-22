@@ -8,7 +8,7 @@ import java.util.Map;
  * Created by wangzhixiang on 2022/02/22.
  */
 @RequestMapping
-public interface HelloResutfulClient {
+public interface HelloRestfulClient {
     @RequestGet(path = "/hello/get")
     String helloGet(@RequestHeader Map<String, String> headers);
 

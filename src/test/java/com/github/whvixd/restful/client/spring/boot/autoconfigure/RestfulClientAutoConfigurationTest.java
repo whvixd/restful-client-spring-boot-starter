@@ -4,7 +4,7 @@ import com.github.whvixd.restful.client.annotation.RestfulClientScan;
 import com.github.whvixd.restful.client.proxy.RestfulClientActuator;
 import com.github.whvixd.restful.client.proxy.RestfulClientDispatcher;
 import com.github.whvixd.restful.client.proxy.RestfulClientProxy;
-import com.github.whvixd.restful.client.spring.boot.testclient.HelloResutfulClient;
+import com.github.whvixd.restful.client.spring.boot.testclient.HelloRestfulClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,16 +13,22 @@ import org.springframework.boot.test.util.TestPropertyValues;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+
+import static spark.Spark.*;
+
 /**
  * Created by wangzhixiang on 2022/02/22.
  */
 public class RestfulClientAutoConfigurationTest {
     private AnnotationConfigApplicationContext context;
+    private MockServer mockServer;
 
     @Before
     public void init() {
         this.context = new AnnotationConfigApplicationContext();
         intProperties();
+        this.mockServer = new MockServer();
     }
 
     private void intProperties() {
@@ -50,11 +56,48 @@ public class RestfulClientAutoConfigurationTest {
     }
 
     @Test
+    public void testClientBean() {
+        this.context.register(RestfulClientAutoConfiguration.class, MybatisScanMapperConfiguration.class);
+        this.context.refresh();
+        Assert.assertNotNull(this.context.getBean(HelloRestfulClient.class));
+
+    }
+
+    @Test
     public void testClient() {
         this.context.register(RestfulClientAutoConfiguration.class, MybatisScanMapperConfiguration.class);
         this.context.refresh();
-        Assert.assertNotNull(this.context.getBean(HelloResutfulClient.class));
+        mockServer.setupSpec();
+        HelloRestfulClient helloRestfulClient = this.context.getBean(HelloRestfulClient.class);
+        HashMap<String, String> mockReq = new HashMap<>();
+        String helloGetRes = helloRestfulClient.helloGet(mockReq);
+        Assert.assertEquals(helloGetRes, "{\"message\":\"Hello Get\"}");
+        HashMap<String, Object> mockBody = new HashMap<>();
+        String helloPostRes = helloRestfulClient.helloPost(mockReq, mockBody);
+        Assert.assertEquals(helloPostRes, "{\"message\":\"Hello Post\"}");
+        mockServer.cleanupSpec();
+    }
 
+    static class MockServer {
+        void setupSpec() {
+            port(8080);
+            get("/hello/get", (req, res) -> "{\"message\":\"Hello Get\"}");
+            post("/hello/post", (req, res) -> {
+                String body = req.body();
+                System.out.println(body);
+                return "{\"message\":\"Hello Post\"}";
+            });
+            try {
+                // 确保8080启动
+                Thread.sleep(1000L);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        void cleanupSpec() {
+            stop();
+        }
     }
 
 
