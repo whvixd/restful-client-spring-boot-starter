@@ -22,12 +22,15 @@ public class RestfulClientAutoConfigurationTest {
     @Before
     public void init() {
         this.context = new AnnotationConfigApplicationContext();
+        intProperties();
+    }
+
+    private void intProperties() {
         TestPropertyValues.of("spring.restful.client.retryOnConnectionFailure:true").applyTo(this.context);
         TestPropertyValues.of("spring.restful.client.connectTimeout:10").applyTo(this.context);
         TestPropertyValues.of("spring.restful.client.readTimeout:10").applyTo(this.context);
         TestPropertyValues.of("spring.restful.client.connectionPoolMaxIdleConnections:10").applyTo(this.context);
         TestPropertyValues.of("spring.restful.client.connectionPoolKeepAliveDuration:10").applyTo(this.context);
-
     }
 
     @Configuration
@@ -48,7 +51,7 @@ public class RestfulClientAutoConfigurationTest {
 
     @Test
     public void testClient() {
-        this.context.register(RestfulClientAutoConfiguration.class,MybatisScanMapperConfiguration.class);
+        this.context.register(RestfulClientAutoConfiguration.class, MybatisScanMapperConfiguration.class);
         this.context.refresh();
         Assert.assertNotNull(this.context.getBean(HelloResutfulClient.class));
 
