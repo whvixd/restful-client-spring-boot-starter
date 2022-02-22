@@ -39,7 +39,7 @@ public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanne
         Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
 
         if (beanDefinitions.isEmpty()) {
-            log.warn("No Restful client was found in '" + Arrays.toString(basePackages)+"' package. Please check your configuration.");
+            log.warn("No Restful client was found in '" + Arrays.toString(basePackages) + "' package. Please check your configuration.");
         } else {
             processBeanDefinitions(beanDefinitions);
         }
@@ -59,11 +59,11 @@ public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanne
                                 "The target bean definition of scoped proxy bean not found. Root bean definition[" + holder + "]"));
             }
             String beanClassName = definition.getBeanClassName();
-            if(beanClassName==null){
+            if (beanClassName == null) {
                 log.error("beanClassName is null");
                 throw new BeanCreationException("beanClassName is null");
             }
-            log.debug("Creating RestfulClientFactoryBean with name '" + holder.getBeanName());
+            log.debug("Creating RestfulClientFactoryBean with name '" + holder.getBeanName() + "' and '" + beanClassName + "' restfulClientInterface");
 
             definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName);
 
@@ -88,16 +88,13 @@ public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanne
         return beanDefinition.getMetadata().isInterface();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     protected boolean checkCandidate(String beanName, BeanDefinition beanDefinition) {
         if (super.checkCandidate(beanName, beanDefinition)) {
             return true;
         } else {
             log.warn("Skipping RestfulClientFactoryBean with name '" + beanName + "' and '"
-                    + beanDefinition.getBeanClassName() + "' mapperInterface" + ". Bean already defined with the same name!");
+                    + beanDefinition.getBeanClassName() + "' restfulClientInterface" + ". Bean already defined with the same name!");
             return false;
         }
     }

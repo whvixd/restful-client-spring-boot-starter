@@ -21,16 +21,16 @@ import java.util.stream.Collectors;
  */
 public class RestfulClientScannerRegister implements ImportBeanDefinitionRegistrar {
     @Override
-    public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        AnnotationAttributes mapperScanAttrs = AnnotationAttributes
-                .fromMap(importingClassMetadata.getAnnotationAttributes(RestfulClientScan.class.getName()));
-        if (mapperScanAttrs != null) {
-            registerBeanDefinitions(importingClassMetadata, mapperScanAttrs, registry,
-                    generateBaseBeanName(importingClassMetadata, 0));
+    public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry registry) {
+        AnnotationAttributes restfulClientScanAttrs = AnnotationAttributes
+                .fromMap(annotationMetadata.getAnnotationAttributes(RestfulClientScan.class.getName()));
+        if (restfulClientScanAttrs != null) {
+            registerBeanDefinitions(annotationMetadata, restfulClientScanAttrs, registry,
+                    generateBaseBeanName(annotationMetadata, 0));
         }
     }
 
-    private void registerBeanDefinitions(AnnotationMetadata annoMeta, AnnotationAttributes annoAttrs,
+    private void registerBeanDefinitions(AnnotationMetadata annotationMetadata, AnnotationAttributes annoAttrs,
                                          BeanDefinitionRegistry registry, String beanName) {
         BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(RestfulClientScannerConfigurer.class);
         List<String> basePackages = new ArrayList<>();
@@ -44,7 +44,7 @@ public class RestfulClientScannerRegister implements ImportBeanDefinitionRegistr
                 .collect(Collectors.toList()));
 
         if (basePackages.isEmpty()) {
-            basePackages.add(ClassUtils.getPackageName(annoMeta.getClassName()));
+            basePackages.add(ClassUtils.getPackageName(annotationMetadata.getClassName()));
         }
         builder.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
         builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));

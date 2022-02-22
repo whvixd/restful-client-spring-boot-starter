@@ -42,7 +42,7 @@ public class RestfulClientAutoConfigurationTest {
     @Configuration
     @EnableAutoConfiguration
     @RestfulClientScan(basePackages = "com.github.whvixd.restful.client.spring.boot.testclient")
-    static class MybatisScanMapperConfiguration {
+    static class RestfulClientScanConfiguration {
     }
 
     @Test
@@ -57,7 +57,7 @@ public class RestfulClientAutoConfigurationTest {
 
     @Test
     public void testClientBean() {
-        this.context.register(RestfulClientAutoConfiguration.class, MybatisScanMapperConfiguration.class);
+        this.context.register(RestfulClientAutoConfiguration.class, RestfulClientScanConfiguration.class);
         this.context.refresh();
         Assert.assertNotNull(this.context.getBean(HelloRestfulClient.class));
 
@@ -65,7 +65,7 @@ public class RestfulClientAutoConfigurationTest {
 
     @Test
     public void testClient() {
-        this.context.register(RestfulClientAutoConfiguration.class, MybatisScanMapperConfiguration.class);
+        this.context.register(RestfulClientAutoConfiguration.class, RestfulClientScanConfiguration.class);
         this.context.refresh();
         mockServer.setupSpec();
         HelloRestfulClient helloRestfulClient = this.context.getBean(HelloRestfulClient.class);

@@ -52,19 +52,16 @@ public class RestfulClientScannerConfigurer implements BeanDefinitionRegistryPos
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class,false, false);
         if (!prcs.isEmpty() && applicationContext instanceof ConfigurableApplicationContext) {
-            BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory().getBeanDefinition(beanName);
+            BeanDefinition restfulClientScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory().getBeanDefinition(beanName);
 
-            // PropertyResourceConfigurer does not expose any methods to explicitly perform
-            // property placeholder substitution. Instead, create a BeanFactory that just
-            // contains this mapper scanner and post process the factory.
             DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
-            factory.registerBeanDefinition(beanName, mapperScannerBean);
+            factory.registerBeanDefinition(beanName, restfulClientScannerBean);
 
             for (PropertyResourceConfigurer prc : prcs.values()) {
                 prc.postProcessBeanFactory(factory);
             }
 
-            PropertyValues values = mapperScannerBean.getPropertyValues();
+            PropertyValues values = restfulClientScannerBean.getPropertyValues();
             this.basePackage = getPropertyValue("basePackage", values);
         }
         this.basePackage = Optional.ofNullable(this.basePackage).map(this.applicationContext.getEnvironment()::resolvePlaceholders).orElse(null);
