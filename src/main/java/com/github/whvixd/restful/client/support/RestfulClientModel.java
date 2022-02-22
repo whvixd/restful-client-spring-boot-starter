@@ -13,7 +13,8 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Created by wangzhixiang on 2022/02/21.
+ * RestfulClient请求的数据结构
+ * Created by whvixd on 2022/02/21.
  */
 @Data
 public class RestfulClientModel {
@@ -61,9 +62,6 @@ public class RestfulClientModel {
      * 1. 从method中获取params
      * 2. 从param中获取注解
      * 3. 被修饰的注解参数set到RestfulClientModel中
-     *
-     * @param method
-     * @param args
      */
     @SuppressWarnings("all")
     public void fillArgs(Method method, Object[] args) {

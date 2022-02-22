@@ -6,9 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * post请求方式
- * <p>
- * Created by wangzhx on 2018/11/6.
+ * 标识为post请求方式
+ * Created by whvixd on 2022/2/22.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})

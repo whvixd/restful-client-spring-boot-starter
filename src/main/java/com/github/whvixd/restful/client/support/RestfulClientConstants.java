@@ -1,7 +1,8 @@
 package com.github.whvixd.restful.client.support;
 
 /**
- * Created by wangzhixiang on 2022/02/18.
+ * 常量
+ * Created by whvixd on 2022/02/18.
  */
 public interface RestfulClientConstants {
     String HTTP = "http://";

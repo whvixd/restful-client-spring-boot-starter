@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.lang.reflect.Proxy;
 
 /**
- * Created by wangzhixiang on 2022/02/18.
+ * RestfulClient代理器
+ * Created by whvixd on 2022/02/18.
  */
 public class RestfulClientProxy {
     @Autowired
@@ -15,7 +16,6 @@ public class RestfulClientProxy {
     public <T> T wrapDynamicProxy(Class<T> clientType) {
         return doWrapDynamicProxy(clientType);
     }
-
 
     @SuppressWarnings("all")
     private <T> T doWrapDynamicProxy(Class<T> clientType) {

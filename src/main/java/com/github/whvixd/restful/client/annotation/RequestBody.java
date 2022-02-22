@@ -6,9 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 请求体
- * <p>
- * Created by wangzhx on 2018/11/6.
+ * 标识为请求体
+ * Created by whvixd on 2022/2/22.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.PARAMETER})

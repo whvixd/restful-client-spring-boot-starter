@@ -11,7 +11,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * Created by wangzhx on 2018/7/26.
+ * Created by whvixd on 2018/7/26.
  */
 @UtilityClass
 public class FastJsonUtil {

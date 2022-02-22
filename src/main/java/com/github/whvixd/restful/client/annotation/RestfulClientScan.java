@@ -9,8 +9,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 添加到spring-boot的启动类上
- * Created by wangzhixiang on 2022/02/18.
+ * 扫描RestfulClient的接口
+ * Created by whvixd on 2022/02/18.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -20,5 +20,6 @@ public @interface RestfulClientScan {
 
     String[] basePackages() default {};
 
+    // TODO
     Class<?>[] basePackageClasses() default {};
 }

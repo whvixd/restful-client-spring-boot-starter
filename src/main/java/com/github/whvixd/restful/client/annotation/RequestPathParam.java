@@ -6,8 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 请求路径参数
- * <p>
+ * 标识为请求路径参数
  * Created by whvixd on 2022/2/18.
  */
 @Retention(RetentionPolicy.RUNTIME)

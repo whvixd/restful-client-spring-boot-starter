@@ -1,7 +1,6 @@
 package com.github.whvixd.restful.client.spring.override;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.github.whvixd.restful.client.annotation.RestfulClientScan;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.PropertyValue;
 import org.springframework.beans.PropertyValues;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;
@@ -26,12 +24,11 @@ import java.util.Optional;
 import static org.springframework.util.Assert.notNull;
 
 /**
- * Created by wangzhixiang on 2022/02/19.
+ * {@link RestfulClientScan} 配置器
+ * Created by whvixd on 2022/02/19.
  */
 public class RestfulClientScannerConfigurer implements BeanDefinitionRegistryPostProcessor, InitializingBean, ApplicationContextAware, BeanNameAware {
     private ApplicationContext applicationContext;
-
-    private boolean addToConfig = true;
 
     private String basePackage;
 
@@ -53,11 +50,9 @@ public class RestfulClientScannerConfigurer implements BeanDefinitionRegistryPos
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class,
-                false, false);
+        Map<String, PropertyResourceConfigurer> prcs = applicationContext.getBeansOfType(PropertyResourceConfigurer.class,false, false);
         if (!prcs.isEmpty() && applicationContext instanceof ConfigurableApplicationContext) {
-            BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory()
-                    .getBeanDefinition(beanName);
+            BeanDefinition mapperScannerBean = ((ConfigurableApplicationContext) applicationContext).getBeanFactory().getBeanDefinition(beanName);
 
             // PropertyResourceConfigurer does not expose any methods to explicitly perform
             // property placeholder substitution. Instead, create a BeanFactory that just
@@ -70,7 +65,6 @@ public class RestfulClientScannerConfigurer implements BeanDefinitionRegistryPos
             }
 
             PropertyValues values = mapperScannerBean.getPropertyValues();
-
             this.basePackage = getPropertyValue("basePackage", values);
         }
         this.basePackage = Optional.ofNullable(this.basePackage).map(this.applicationContext.getEnvironment()::resolvePlaceholders).orElse(null);

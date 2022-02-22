@@ -9,7 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by wangzhixiang on 2022/02/18.
+ * RestfulClient的spring-boot配置器
+ * Created by whvixd on 2022/02/18.
  */
 @Configuration
 @EnableConfigurationProperties(RestfulClientProperties.class)

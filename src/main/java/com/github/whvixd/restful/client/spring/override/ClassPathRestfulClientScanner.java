@@ -1,8 +1,11 @@
 package com.github.whvixd.restful.client.spring.override;
 
 import com.github.whvixd.restful.client.RestfulClientFactoryBean;
+import com.github.whvixd.restful.client.annotation.RestfulClientScan;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.scope.ScopedProxyFactoryBean;
 import org.springframework.aop.scope.ScopedProxyUtils;
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
@@ -11,12 +14,15 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 
 /**
- * Created by wangzhixiang on 2022/02/19.
+ * {@link RestfulClientScan} 扫表器
+ * Created by whvixd on 2022/02/19.
  */
+@Slf4j
 public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanner {
 
     private Class<? extends RestfulClientFactoryBean> restfulClientFactoryBeanClass = RestfulClientFactoryBean.class;
@@ -33,8 +39,7 @@ public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanne
         Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
 
         if (beanDefinitions.isEmpty()) {
-//            LOGGER.warn(() -> "No MyBatis mapper was found in '" + Arrays.toString(basePackages)
-//                    + "' package. Please check your configuration.");
+            log.warn("No Restful client was found in '" + Arrays.toString(basePackages)+"' package. Please check your configuration.");
         } else {
             processBeanDefinitions(beanDefinitions);
         }
@@ -54,12 +59,13 @@ public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanne
                                 "The target bean definition of scoped proxy bean not found. Root bean definition[" + holder + "]"));
             }
             String beanClassName = definition.getBeanClassName();
-//            LOGGER.debug(() -> "Creating MapperFactoryBean with name '" + holder.getBeanName() + "' and '" + beanClassName
-//                    + "' mapperInterface");
+            if(beanClassName==null){
+                log.error("beanClassName is null");
+                throw new BeanCreationException("beanClassName is null");
+            }
+            log.debug("Creating RestfulClientFactoryBean with name '" + holder.getBeanName());
 
-            // the mapper interface is the original class of the bean
-            // but, the actual class of the bean is MapperFactoryBean
-            definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName); // issue #59
+            definition.getConstructorArgumentValues().addGenericArgumentValue(beanClassName);
 
             // FactoryBean添加进去，实例化bean
             definition.setBeanClass(this.restfulClientFactoryBeanClass);
@@ -77,12 +83,9 @@ public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanne
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
-        return beanDefinition.getMetadata().isInterface() && beanDefinition.getMetadata().isIndependent();
+        return beanDefinition.getMetadata().isInterface();
     }
 
     /**
@@ -93,8 +96,8 @@ public class ClassPathRestfulClientScanner extends ClassPathBeanDefinitionScanne
         if (super.checkCandidate(beanName, beanDefinition)) {
             return true;
         } else {
-//            LOGGER.warn(() -> "Skipping MapperFactoryBean with name '" + beanName + "' and '"
-//                    + beanDefinition.getBeanClassName() + "' mapperInterface" + ". Bean already defined with the same name!");
+            log.warn("Skipping RestfulClientFactoryBean with name '" + beanName + "' and '"
+                    + beanDefinition.getBeanClassName() + "' mapperInterface" + ". Bean already defined with the same name!");
             return false;
         }
     }

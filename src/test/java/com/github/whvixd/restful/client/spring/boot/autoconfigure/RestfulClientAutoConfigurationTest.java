@@ -18,7 +18,7 @@ import java.util.HashMap;
 import static spark.Spark.*;
 
 /**
- * Created by wangzhixiang on 2022/02/22.
+ * Created by whvixd on 2022/02/22.
  */
 public class RestfulClientAutoConfigurationTest {
     private AnnotationConfigApplicationContext context;

@@ -9,8 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * 用于接口请求的ip地址
- * <p>
+ * 标识该接口为客户端
  * Created by whvixd on 2022/2/18.
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -20,5 +19,8 @@ public @interface RequestMapping {
 
     String message() default "";
 
+    /**
+     * 解码，编码解析器，默认为{@link DefaultCodeResolver}
+     */
     Class<? extends CodeResolver> coder() default DefaultCodeResolver.class;
 }

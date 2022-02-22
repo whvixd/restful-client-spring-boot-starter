@@ -5,7 +5,7 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Created by wangzhx on 2018/12/1.
+ * Created by whvixd on 2022/2/22.
  */
 public class RestfulClientFactoryBean<T> implements FactoryBean<T> {
 

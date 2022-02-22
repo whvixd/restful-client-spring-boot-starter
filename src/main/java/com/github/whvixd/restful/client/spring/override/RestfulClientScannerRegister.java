@@ -16,7 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by wangzhixiang on 2022/02/18.
+ * {@link RestfulClientScan} 注册器
+ * Created by whvixd on 2022/02/18.
  */
 public class RestfulClientScannerRegister implements ImportBeanDefinitionRegistrar {
     @Override

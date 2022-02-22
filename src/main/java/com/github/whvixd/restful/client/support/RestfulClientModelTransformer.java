@@ -1,7 +1,7 @@
 package com.github.whvixd.restful.client.support;
 
 import com.github.whvixd.restful.client.annotation.*;
-import com.github.whvixd.restful.client.exception.ResutfulClientException;
+import com.github.whvixd.restful.client.exception.RestfulClientException;
 import com.github.whvixd.restful.client.toolkit.RestfulClientStringUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,7 +9,8 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 
 /**
- * Created by wangzhixiang on 2022/02/21.
+ * RestfulClient模型转换器
+ * Created by whvixd on 2022/02/21.
  */
 @Slf4j
 public class RestfulClientModelTransformer {
@@ -25,14 +26,14 @@ public class RestfulClientModelTransformer {
         RequestMapping requestMapping = declaringClass.getAnnotation(RequestMapping.class);
         if (Objects.isNull(requestMapping)) {
             log.error("未添加@RequestMapping");
-            throw new ResutfulClientException("接口未添加@RequestMapping");
+            throw new RestfulClientException("接口未添加@RequestMapping");
         }
 
         String ipAndPort = requestMapping.path();
         ipAndPort = ipAndPort.startsWith(RestfulClientConstants.HTTP) ? ipAndPort : RestfulClientConstants.HTTP.concat(ipAndPort);
         if (!RestfulClientStringUtils.checkUrl(ipAndPort)) {
             log.error("ip:{} 格式不对", ipAndPort);
-            throw new ResutfulClientException("ip格式错误");
+            throw new RestfulClientException("ip格式错误");
         }
 
         return doTransfer(method, args, ipAndPort, requestMapping.coder());
@@ -82,7 +83,7 @@ public class RestfulClientModelTransformer {
             return clazz.newInstance();
         } catch (Exception e) {
             log.error("coderHandler instance error ", e);
-            throw new ResutfulClientException(e);
+            throw new RestfulClientException(e);
         }
     }
 }

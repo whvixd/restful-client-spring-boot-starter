@@ -5,7 +5,7 @@ import com.github.whvixd.restful.client.annotation.*;
 import java.util.Map;
 
 /**
- * Created by wangzhixiang on 2022/02/22.
+ * Created by whvixd on 2022/02/22.
  */
 @RequestMapping
 public interface HelloRestfulClient {
