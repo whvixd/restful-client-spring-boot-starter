@@ -1,0 +1,53 @@
+{
+  "groups": [
+    {
+      "name": "spring.restful.client",
+      "type": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties",
+      "sourceType": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties",
+      "defaultValue": true,
+      "name": "spring.restful.client.retry-on-connection-failure",
+      "description": "Retry On Connection Failure.",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties",
+      "defaultValue": 10,
+      "name": "spring.restful.client.connect-timeout",
+      "description": "Connect Timeout.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties",
+      "defaultValue": 10,
+      "name": "spring.restful.client.read-timeout",
+      "description": "Read Timeout.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties",
+      "defaultValue": 10,
+      "name": "spring.restful.client.write-timeout",
+      "description": "Write TTimeout.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties",
+      "defaultValue": 5,
+      "name": "spring.restful.client.connection-pool-max-idle-connections",
+      "description": "Connection Pool Max Idle Connections.",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.github.whvixd.restful.client.spring.boot.autoconfigure.RestfulClientProperties",
+      "defaultValue": 5,
+      "name": "spring.restful.client.connection-pool-keep-alive-duration",
+      "description": "Connection Pool Keep Alive Duration.",
+      "type": "java.lang.Integer"
+    }
+  ]
+}
