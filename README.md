@@ -10,7 +10,7 @@
 1.2 将下载的jar包添加到本地依赖中
 
 ```bash
-mvn install:install-file -DgroupId=com.github.whvixd -DartifactId=restful-client-spring-boot-starter -Dversion=1.0.0-Dpackaging=jar -Dfile=~/Downloads/restful-client-spring-boot-starter.jar
+mvn install:install-file -DgroupId=com.github.whvixd -DartifactId=restful-client-spring-boot-starter -Dversion=1.0.0 -Dpackaging=jar -Dfile=/Users/xxx/Downloads/restful-client-spring-boot-starter-1.0.0.jar
 ```
 
 1.3 本地spring-boot项目添加mvn依赖
