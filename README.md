@@ -41,7 +41,7 @@ public class RestfulClientApplication {
 2.2 添加`client`模块
 
 ```java
-@RequestMapping(path = "127.0.0.1:8080",message = "hello")
+@RequestMapping(path = "192.168.22.22:8888",message = "helloClient")
 public interface HelloRestfulClient {
     @RequestGet(path = "/hello/get")
     String helloGet(@RequestHeader Map<String, String> headers);
@@ -71,6 +71,7 @@ public class HelloService{
     
     public String helloGet(){
         Map<String,String> mockHeaders=new HashMap<>();
+        // http远程调用
         return helloRestfulClient.helloGet(mockHeaders);
     }
 } 
