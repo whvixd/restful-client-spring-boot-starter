@@ -1,5 +1,5 @@
 # 简介
-**restful-client-spring-boot-starter** 是一个基于spring-boot的快速集成http客户端的启动器
+**restful-client-spring-boot-starter** 是一个基于spring-boot快速集成http客户端的启动器
 
 # 使用方式
 
