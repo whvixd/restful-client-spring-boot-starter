@@ -30,7 +30,7 @@ mvn install:install-file -DgroupId=com.github.whvixd -DartifactId=restful-client
 ```java
 @SpringBootApplication
 @RestfulClientScan(basePackages = "com.github.whvixd.restful.client.spring.boot.client")
-static class RestfulClientApplication {
+public class RestfulClientApplication {
     public static void main(String[] args) {
             SpringApplication.run(RestfulClientApplication.class, args);
         }
