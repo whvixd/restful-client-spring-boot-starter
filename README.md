@@ -76,4 +76,4 @@ public class HelloService{
 } 
 ```
 
-> 代码可参考 `RestfulClientAutoConfigurationTest`
+> 代码可参考 [RestfulClientAutoConfigurationTest](https://github.com/whvixd/restful-client-spring-boot-starter/blob/master/src/test/java/com/github/whvixd/restful/client/spring/boot/autoconfigure/RestfulClientAutoConfigurationTest.java)
